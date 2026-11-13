@@ -1,0 +1,10 @@
+﻿[
+  {"id": "p01", "name": "Aidos",    "domain": "Data Analysis",    "skills": ["Python", "Data Analysis", "ML"],     "interests": ["Research", "Startups"],   "availability_hours": 10},
+  {"id": "p02", "name": "Aruzhan",  "domain": "Mobile",           "skills": ["Flutter", "Dart", "UI/UX"],          "interests": ["Education"],              "availability_hours": 10},
+  {"id": "p03", "name": "Dana",     "domain": "Data Analysis",    "skills": ["Python", "SQL", "Statistics"],       "interests": ["Research"],               "availability_hours": 4},
+  {"id": "p04", "name": "Timur",    "domain": "Backend",          "skills": ["Python", "FastAPI", "SQL"],          "interests": ["Startups"],               "availability_hours": 12},
+  {"id": "p05", "name": "Madina",   "domain": "Design",           "skills": ["Figma", "UI/UX"],                    "interests": ["Education"],              "availability_hours": 8},
+  {"id": "p06", "name": "Nurlan",   "domain": "Mobile",           "skills": ["Flutter", "Kotlin"],                 "interests": ["Hackathons"],             "availability_hours": 6},
+  {"id": "p07", "name": "Aigerim",  "domain": "Data Analysis",    "skills": ["Python", "Pandas", "Data Analysis"], "interests": ["Research"],               "availability_hours": 6},
+  {"id": "p08", "name": "Sanzhar",  "domain": "Machine Learning", "skills": ["Python", "PyTorch", "ML"],           "interests": ["Research", "Hackathons"], "availability_hours": 15}
+]
