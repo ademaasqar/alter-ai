@@ -1,112 +1,112 @@
-# ALTER AI — Personal AI Representative Network
+# ALTER AI — жеке AI өкілдер желісі
 
-Final project for **QAIRU AI Fundamentals 2026**.
+QAIRU AI Fundamentals 2026 пәнінің қорытынды жобасы.
 
-Every person has a personal AI agent. The agent knows only what its owner allows to share, talks to other people's agents, negotiates availability and helps to build a project team.
+Әр адамның жеке AI агенті болады. Агент иесі рұқсат берген ақпаратты ғана біледі, басқа адамдардың агенттерімен сөйлесіп, бос уақытты келіседі және жоба командасын құруға көмектеседі.
 
-**Team:** [Аты-жөні 1], [Аты-жөні 2]
+**Команда:** [Әдемі], [Зарина]
 
-## Goal
+## Жобаның мақсаты
 
-A working application where a user describes the team they need (roles, skills, hours per week). Personal agents answer on behalf of their owners, a constraint solver assembles a valid team, and the system explains the result.
+Пайдаланушы қажетті команданы сипаттайды (рөлдер, дағдылар, аптасына сағат саны). Жеке агенттер иелерінің атынан жауап береді, шектеулерді қанағаттандыру алгоритмі (CSP) сәйкес команданы жинайды, ал жүйе нәтижені түсіндіреді.
 
-## AI topics implemented
+## Іске асырылған AI тақырыптары
 
-| Week | Topic | Where in the code |
+| Апта | Тақырып | Кодтағы орны |
 | --- | --- | --- |
 | 1 | Intelligent Agents and Environments | `backend/agents/personal_agent.py`, `backend/agents/network.py` |
 | 3 | Constraint Satisfaction Problems | `backend/csp/solver.py` |
-| 6 | Bayesian Inference | `backend/matching.py` — [описание байесовской модели от участника 2] |
+| 6 | Bayesian Inference | `backend/matching.py` — [2-қатысушының Bayes моделінің сипаттамасы] |
 
-### 1. Intelligent agents
-- `PersonalAgent` represents one person. It receives a request, decides to **accept**, **decline** or make a **counter-offer** (fewer hours), and returns a reply.
-- Privacy filter: only the fields the owner allowed (`shared_fields`) leave the agent. Interests and name are never sent.
-- `AgentNetwork` is the environment: it sends a request to all agents, collects replies and keeps a conversation log.
+### 1. Интеллектуалды агенттер
+- `PersonalAgent` бір адамды ұсынады. Ол сұраныс алады және **қабылдау** (accept), **бас тарту** (decline) немесе **қарсы ұсыныс** (counter, сағатты азайту) туралы шешім қабылдайды.
+- Құпиялылық сүзгісі: тек иесі рұқсат еткен өрістер (`shared_fields`) агенттен шығады. Қызығушылықтар мен аты ешқашан жіберілмейді.
+- `AgentNetwork` — орта: сұранысты барлық агентке жібереді, жауаптарды жинайды және сөйлесу журналын сақтайды.
 
-### 2. Constraint satisfaction (CSP)
-- Variables: roles of the team. Domains: agents that accepted or made a counter-offer.
-- Constraints: one person cannot fill two roles; total weekly hours must fit the budget; excluded people are not used.
-- Algorithm: backtracking search with **MRV** (choose the role with the fewest candidates first) and **forward checking** (remove conflicting candidates from other roles after each choice).
+### 2. Шектеулерді қанағаттандыру (CSP)
+- Айнымалылар: команда рөлдері. Домендер: келісім берген немесе қарсы ұсыныс жасаған агенттер.
+- Шектеулер: бір адам екі рөл атқара алмайды; жалпы сағат саны бюджеттен аспауы керек; шығарылған адамдар таңдалмайды.
+- Алгоритм: **MRV** (ең аз үміткері бар рөлді бірінші таңдау) және **forward checking** (әр таңдаудан кейін басқа рөлдерден қайшы үміткерлерді алып тастау) қолданылатын backtracking іздеуі.
 
-### 3. Bayesian inference
-[Участник 2: коротко опиши модель — какие признаки, как считается вероятность совместимости.]
-Currently `compatibility()` in `backend/matching.py` is a simple placeholder (share of required skills a person has). The function returns a score from 0 to 1 and ranks candidates before the CSP search.
+### 3. Байес қорытындысы
+[2-қатысушы: модельді қысқаша сипаттаңыз — қандай белгілер, сәйкестік ықтималдығы қалай есептеледі.]
+Қазір `backend/matching.py` ішіндегі `compatibility()` — қарапайым уақытша нұсқа (адамда бар қажетті дағдылардың үлесі). Функция 0-ден 1-ге дейінгі баға қайтарады және CSP іздеуінен бұрын үміткерлерді сұрыптайды.
 
-## How it works
+## Жүйе қалай жұмыс істейді
 
-1. The user sends roles and constraints.
-2. The request is broadcast to all personal agents.
-3. Agents reply (accept / counter / decline) using only shared data.
-4. Candidates are ranked by compatibility score.
-5. The CSP solver picks a team that satisfies all constraints.
-6. The result contains the team, scores, reasons, search steps and the agents' conversation log.
+1. Пайдаланушы рөлдер мен шектеулерді жібереді.
+2. Сұраныс барлық жеке агентке таратылады.
+3. Агенттер тек ортақ деректерді пайдаланып жауап береді (accept / counter / decline).
+4. Үміткерлер сәйкестік бағасы бойынша сұрыпталады.
+5. CSP алгоритмі барлық шектеуді қанағаттандыратын команданы таңдайды.
+6. Нәтижеде команда, бағалар, себептер, іздеу қадамдары және агенттердің сөйлесу журналы болады.
 
-## Project structure
+## Жоба құрылымы
 
 ```
 backend/
-  agents/personal_agent.py   # personal agent with privacy filter
-  agents/network.py          # environment, request broadcast, log
+  agents/personal_agent.py   # құпиялылық сүзгісі бар жеке агент
+  agents/network.py          # орта, сұранысты тарату, журнал
   csp/solver.py              # backtracking + MRV + forward checking
-  data/profiles.json         # demo profiles
+  data/profiles.json         # демо-профильдер
   models.py                  # Profile, RoleRequest, AgentResponse
-  matching.py                # compatibility score (Bayesian part)
-  service.py                 # full pipeline + input validation
-  main.py                    # FastAPI application
-  demo.py                    # console demo
-tests/                       # 20 automated tests
+  matching.py                # сәйкестік бағасы (Bayes бөлігі)
+  service.py                 # толық процесс + кіріс деректерін тексеру
+  main.py                    # FastAPI қосымшасы
+  demo.py                    # консольдік демо
+tests/                       # 20 автоматты тест
 ```
 
-## Installation and run
+## Орнату және іске қосу
 
-Requires Python 3.12+.
+Python 3.12+ қажет.
 
 ```
 pip install -r requirements.txt
 ```
 
-Console demo:
+Консольдік демо:
 
 ```
 python -m backend.demo
 ```
 
-API server:
+API сервері:
 
 ```
 python -m uvicorn backend.main:app --reload
 ```
 
-Interactive API docs: http://127.0.0.1:8000/docs
+Интерактивті API құжаттамасы: http://127.0.0.1:8000/docs
 
-Endpoints: `GET /health`, `GET /agents` (public data only), `POST /find-team`.
+Эндпоинттер: `GET /health`, `GET /agents` (тек ашық деректер), `POST /find-team`.
 
-On Windows use `py` instead of `python` if the `python` command does not work.
+Windows жүйесінде `python` командасы жұмыс істемесе, оның орнына `py` қолданыңыз.
 
-## Tests
+## Тестілеу
 
 ```
 python -m pytest
 ```
 
-20 tests cover agent decisions, privacy (private fields never leave the agent), the agent network, the CSP solver (valid team, no solution, hours budget, excluded people), the full pipeline, input validation and the API.
+20 тест агент шешімдерін, құпиялылықты (жеке өрістер агенттен шықпайды), агенттер желісін, CSP алгоритмін (дұрыс команда, шешімнің болмауы, сағат бюджеті, шығарылған адамдар), толық процесті, кіріс деректерін тексеруді және API-ды қамтиды.
 
-Example result: on a test scenario the naive search checks 4 candidates, while MRV with forward checking checks 2.
+Мысал нәтиже: сынақ сценарийінде қарапайым іздеу 4 үміткерді тексереді, ал MRV мен forward checking қолданылған іздеу тек 2 үміткерді тексереді.
 
-## Limitations
+## Шектеулер
 
-- Demo uses synthetic profiles, not real people.
-- The compatibility score depends on the quality of the Bayesian model.
-- Agents use fixed rules, they do not learn from past negotiations.
+- Демо жасанды профильдерді қолданады, нақты адамдарды емес.
+- Сәйкестік бағасының сапасы Bayes моделінің сапасына байланысты.
+- Агенттер бекітілген ережелермен жұмыс істейді, бұрынғы келіссөздерден оқымайды.
 
-## Screenshots
+## Скриншоттар
 
-[Скриншоты интерфейса и /docs]
+[Интерфейс пен /docs скриншоттары]
 
-## Contribution
+## Әр студенттің үлесі
 
-See the Team Contribution Statement.
+Team Contribution Statement құжатын қараңыз.
 
-## Security
+## Қауіпсіздік
 
-No API keys or secrets are stored in this repository.
+Бұл репозиторийде API кілттері мен құпия деректер сақталмайды.
