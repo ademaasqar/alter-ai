@@ -16,7 +16,7 @@ QAIRU AI Fundamentals 2026 пәнінің қорытынды жобасы.
 | --- | --- | --- |
 | 1 | Intelligent Agents and Environments | `backend/agents/personal_agent.py`, `backend/agents/network.py` |
 | 3 | Constraint Satisfaction Problems | `backend/csp/solver.py` |
-| 6 | Bayesian Inference | `backend/matching.py` — [2-қатысушының Bayes моделінің сипаттамасы] |
+| 6 | Bayesian Inference | `backend/matching.py`  |
 
 ### 1. Интеллектуалды агенттер
 - `PersonalAgent` бір адамды ұсынады. Ол сұраныс алады және **қабылдау** (accept), **бас тарту** (decline) немесе **қарсы ұсыныс** (counter, сағатты азайту) туралы шешім қабылдайды.
