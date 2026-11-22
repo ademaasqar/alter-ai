@@ -103,6 +103,8 @@ python -m pytest
 
 ![Интерфейс: Live AI Team Builder](docs/screenshots/interface.png.jpg)
 
+! [demo-video: (docs/screenshots/alter_video.mov)
+
 ## Әр студенттің үлесі
 
 Team Contribution Statement құжатын қараңыз.
