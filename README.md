@@ -101,7 +101,7 @@ python -m pytest
 
 ## Скриншоттар
 
-![Интерфейс: Live AI Team Builder](docs/screenshots/interface.png)
+![Интерфейс: Live AI Team Builder](docs/screenshots/interface.png.jpg)
 
 ## Әр студенттің үлесі
 
